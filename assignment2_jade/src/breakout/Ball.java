@@ -21,11 +21,11 @@ public abstract class Ball implements Colors,changePaddle{
 	private Circle location;
 	private Vector velocity;
 	private boolean replicate;
-
+	// data encaptuation
 
 	/**
 	 * set velocity of this Ball. 
-	 * @mutate
+	 * @mutate | this
 	 */
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;
@@ -46,6 +46,7 @@ public abstract class Ball implements Colors,changePaddle{
 	
 	/**
 	 * Return this ball's location.
+//	 * @post | result.equals()
 	 */
 	public Circle getLocation() {
 		return location;
@@ -86,8 +87,7 @@ public abstract class Ball implements Colors,changePaddle{
 	/**
 	 * Check whether this ball collides with block and change the velocity of the ball.
 	 * @pre | rect!=null
-//	 * @pre | destroyed
-//	 * @post | result.equals()
+//	 * @post | 
 	 */
 	public void hitBlock(Rect rect, boolean destroyed) {
 		//this method is responsible for changing the velocity of the ball in accordance.
@@ -106,8 +106,8 @@ public abstract class Ball implements Colors,changePaddle{
 
 	/**
 	 * Return new NormalBall
-//	 * @pre | loc != null
-//	 * @pre |　nspeed != null
+	 * @pre | loc != null
+	 * @pre | nspeed != null
 	 */
 	protected abstract Ball returnNewBall(Circle loc, Vector nspeed);
 
@@ -118,9 +118,11 @@ public abstract class Ball implements Colors,changePaddle{
 	 * new velocity this ball will have after bouncing on the given ReplicatorPaddle.
 	 * 
 	 * @pre | paddle != null
-//	 * @post | paddle.getReplicateTimes() == 3 && result.equals(getBalls().length==3) ||
+//	 * @post | 1<= getReplicateTimes &&  getReplicateTimes<=3
+//	 * @post | paddle.getReplicateTimes() == 3 && result.equals(array.stream element|| element >=1 <=3) ||
 //	 *       | paddle.getReplicateTimes() == 2 && result.equals(getBalls().length==2) || 
 //	 *       | paddle.getReplicateTimes() == 1 && result.equals(getBalls().length==1)
+//	 * @post | element Arrays.stream(e->e.getVelocity().equals(this.getVelocity().plus(new Vector(2,-2))
 	 */
 	
 	protected Ball[] collideBallPaddle(PaddleState paddle) { // how to check collide?
@@ -146,15 +148,14 @@ public abstract class Ball implements Colors,changePaddle{
 
 	/**
 	 * Return whether this ball is replicated.
-//	 * @post | result.equals(replicate) //?protect
 	 */
 	public boolean isReplicate() {
-		return replicate;
+		return replicate; 
 	}
 
 	/**
 	 * set this ball is replicated.
-	 * @mutate
+	 * @mutate | replicate
 	 */
 	public void setReplicate(boolean replicate) {
 		this.replicate = replicate;
@@ -162,6 +163,8 @@ public abstract class Ball implements Colors,changePaddle{
 	
 	/**
 	 * check whether this ball is collide with the block or paddle.
+	 * @pre | block!= null
+	 * @pre | paddle!= null
 	 */
 	public abstract Ball collideBallBlocks(BlockState block,PaddleState paddle) ;
 

@@ -18,10 +18,9 @@ public class SturdyBlock extends BlockState{
 
 	/**
 	 * Return the HitTimes of this SturdyBlock. 
-	 * @post | result==getHitTimes() //error
 	 */
-	public int getHitTimes() { //error
-		return hitTimes; //error
+	public int getHitTimes() {
+		return hitTimes; 
 	}
 
 	/**
@@ -73,7 +72,6 @@ public class SturdyBlock extends BlockState{
 
 	/**
 	 * Return whether this SturdyBlock is reflect.
-	 * @post | result == false
 	 */
 	@Override
 	protected boolean reflect() {

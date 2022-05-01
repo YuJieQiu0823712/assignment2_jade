@@ -45,7 +45,7 @@ class ReplicationBlockTest {
 		assertFalse(ReplicationBlock.charged());
 		
 		assertTrue(ReplicationBlock.replicateBall());
-		// blockState replicateBall() error
+		
 		
 		assertTrue(ReplicationBlock.equals(ReplicationBlock));
 		assertTrue(ReplicationBlock.getLocation().equals(ReplicationBlock.getLocation()));

@@ -86,24 +86,21 @@ class BallTest {
 		PaddleState ReplicatorPaddle2 = new ReplicatorPaddle(p1,2);	
 		PaddleState ReplicatorPaddle1 = new ReplicatorPaddle(p1,1);
 		
-		assertEquals(3,ReplicatorPaddle3.getReplicateTimes());
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[0].getCenter()));
 		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[1].getCenter()));
 		assertTrue(Balls3[2].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[2].getCenter()));
 		
-		assertEquals(2,ReplicatorPaddle2.getReplicateTimes());
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[0].getCenter()));
 		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[1].getCenter()));
 		
-		assertEquals(1,ReplicatorPaddle1.getReplicateTimes());
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle1)[0].getCenter()));
 				
+		assertEquals(700,NormalBall1.getDiameter());
 		
 		
 		
-//		assertEquals(NormalBall1.hitBlock(NormalBlockLoc, true));//?
-
 		
+				
 		
 
 		

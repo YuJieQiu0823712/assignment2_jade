@@ -12,7 +12,7 @@ public class GameMap {
 	private static final int WIDTH = 50000;
 	private static int BLOCK_LINES = 8;
 	private static int BLOCK_COLUMNS = 10;
-	private static final Vector INIT_BALL_VELOCITY = new Vector(80, 100);//(4,5)
+	private static final Vector INIT_BALL_VELOCITY = new Vector(4, 5); //(4,5)
 	private static BreakoutFacade facade = new BreakoutFacade();
 
 	private GameMap() {

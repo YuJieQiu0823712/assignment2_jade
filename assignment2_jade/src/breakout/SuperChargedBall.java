@@ -76,7 +76,7 @@ public class SuperChargedBall extends Ball{
 	 */
 	
 	@Override
-	public Ball collideBallBlocks(BlockState block,PaddleState paddle) { //?paddle
+	public Ball collideBallBlocks(BlockState block,PaddleState paddle) { 
 			Vector nspeed = this.bounceOn(block.getLocation());
 			if(block.reflect()) {
 				setVelocity(nspeed);
