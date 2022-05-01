@@ -35,14 +35,26 @@ public abstract class BlockState implements Colors{
 		return location;
 	}
 
-
+	/**
+	 * Return NewBlock.
+	 */
 	
 	protected abstract BlockState returnNewBlock(Rect location);
 	
+	/**
+	 * Return whether this Block is reflect.
+	 */
 	protected abstract boolean reflect();
 	
+	/**
+	 * Return whether this Block is charged.
+	 */
 	protected abstract boolean charged();
 	
+	/**
+	 * Return whether this ball is replicated by this block.
+	 * @post | result == false
+	 */
 	protected boolean replicateBall() {
 		return false;
 	}

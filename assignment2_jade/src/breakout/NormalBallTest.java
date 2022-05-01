@@ -16,22 +16,15 @@ class NormalBallTest {
 	void test() {
 		
 		// ball
-		Circle c1 = new Circle(new Point(2500-4,3000+350+5), 700); 
-		Circle c2 = new Circle(new Point(7500-4,3000+350+5), 700); 
-		Circle c3 = new Circle(new Point(12500-4,3000+350+5), 700); 
-		Circle c1N = new Circle(new Point(2500,3000+350), 700); 
-		Circle c2N = new Circle(new Point(7500,3000+350), 700); 
-		Circle c3N = new Circle(new Point(12500,3000+350), 700);
+		Circle c1 = new Circle(new Point(2500,3000+350), 700); 
+		Circle c2 = new Circle(new Point(7500,3000+350), 700); 
+		Circle c3 = new Circle(new Point(12500,3000+350), 700); 
 		
-		Ball NormalBall1 = new NormalBall(c1, new Vector(4,-5));
-		Ball NewNormalBall1 = new NormalBall(c1N, new Vector(4,5));
-		
+		Ball NormalBall1 = new NormalBall(c1, new Vector(4,-5));		
 		Ball NormalBall2 = new NormalBall(c2, new Vector(4,-5));
-		SuperChargedBall NewSuperChargedBall2 = new SuperChargedBall(c2N, new Vector(4,5),0);
-		
+		SuperChargedBall SuperChargedBall2 = new SuperChargedBall(c2, new Vector(4,5),0);		
 		Ball NormalBall3 = new NormalBall(c3, new Vector(4,-5));
-		Ball NewNormalBall3 = new NormalBall(c3N, new Vector(4,5));
-		
+
 		// block
 		Rect NormalBlockLoc = new Rect(new Point (0,0), new Point (5000,3000));
 		Rect PowerupBlockLoc = new Rect(new Point (5000,0), new Point (10000,3000));
@@ -44,9 +37,9 @@ class NormalBallTest {
 		Point p1 = new Point(10000,10000);
 		PaddleState NormalPaddle = new NormalPaddle(p1);
 				
-//		assertEquals(NewNormalBall1, NormalBall1.collideBallBlocks(NormalBlock, NormalPaddle)); //error
-//		assertEquals(NewSuperChargedBall2, NormalBall2.collideBallBlocks(PowerupBlock, NormalPaddle)); //error
-//		assertEquals(NewNormalBall3, NormalBall3.collideBallBlocks(ReplicationBlock, NormalPaddle)); //error
+		assertEquals(NormalBall1, NormalBall1.collideBallBlocks(NormalBlock, NormalPaddle)); 
+		assertEquals(SuperChargedBall2, NormalBall2.collideBallBlocks(PowerupBlock, NormalPaddle)); 
+		assertEquals(NormalBall3, NormalBall3.collideBallBlocks(ReplicationBlock, NormalPaddle)); 
 		
 		assertTrue(NormalBall1.equals(NormalBall1));
 		assertEquals(NormalBall1,NormalBall1.returnNewBall(c1, new Vector(4,-5)));
