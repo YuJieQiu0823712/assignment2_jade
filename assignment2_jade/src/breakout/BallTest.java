@@ -1,6 +1,10 @@
 package breakout;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.awt.Color;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,5 +57,57 @@ class BallTest {
 	void testBounceOn() {
 		assertEquals(new Vector(-10,10),b1.bounceOn(r1138));
 	}
+	
+	@Test
+	void test() {
+		
+		// ball
+		Circle c1 = new Circle(new Point(2500,3000+350), 700);  
+		
+		Ball NormalBall1 = new NormalBall(c1, new Vector(4,5));
+		Ball NewBall1 = new NormalBall(c1, new Vector(6,3));
+		Ball NewBall2 = new NormalBall(c1, new Vector(2,7));		
+		Ball NewBall3 = new NormalBall(c1, new Vector(6,7));
+					
+		Ball[] Balls3 = new Ball[] {NewBall1,NewBall2,NewBall3};
+			
+		// block
+		Rect NormalBlockLoc = new Rect(new Point (0,0), new Point (5000,3000));
+		Rect PowerupBlockLoc = new Rect(new Point (5000,0), new Point (10000,3000));
+		Rect ReplicationBlockLoc = new Rect(new Point (10000,0), new Point (15000,3000));
+		BlockState NormalBlock = new NormalBlock(NormalBlockLoc);
+		BlockState PowerupBlock = new PowerupBlock(PowerupBlockLoc);
+		BlockState ReplicationBlock = new ReplicationBlock(ReplicationBlockLoc);
+				
+		// paddle
+		Point p1 = new Point(10000,10000);
+		PaddleState NormalPaddle = new NormalPaddle(p1);
+		PaddleState ReplicatorPaddle3 = new ReplicatorPaddle(p1,3);
+		PaddleState ReplicatorPaddle2 = new ReplicatorPaddle(p1,2);	
+		PaddleState ReplicatorPaddle1 = new ReplicatorPaddle(p1,1);
+		
+		assertEquals(3,ReplicatorPaddle3.getReplicateTimes());
+		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[0].getCenter()));
+		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[1].getCenter()));
+		assertTrue(Balls3[2].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[2].getCenter()));
+		
+		assertEquals(2,ReplicatorPaddle2.getReplicateTimes());
+		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[0].getCenter()));
+		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[1].getCenter()));
+		
+		assertEquals(1,ReplicatorPaddle1.getReplicateTimes());
+		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle1)[0].getCenter()));
+				
+		
+		
+		
+//		assertEquals(NormalBall1.hitBlock(NormalBlockLoc, true));//?
 
+		
+		
+
+		
+	}
+
+	
 }

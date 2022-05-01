@@ -92,7 +92,7 @@ public abstract class Ball implements Colors,changePaddle{
 
 
 	
-	protected Ball[] collideBallPaddle(PaddleState paddle) {
+	protected Ball[] collideBallPaddle(PaddleState paddle) { // how to check collide?
 		Ball[] newBalls = new Ball[paddle.getReplicateTimes()];
 		
 		
@@ -124,7 +124,7 @@ public abstract class Ball implements Colors,changePaddle{
 	public abstract Ball collideBallBlocks(BlockState block,PaddleState paddle) ;
 
 	
-	
+
 
 	
 	
