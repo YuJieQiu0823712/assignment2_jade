@@ -18,10 +18,10 @@ public class SturdyBlock extends BlockState{
 
 	/**
 	 * Return the HitTimes of this SturdyBlock. 
-	 * @post | result==getHitTimes()
+	 * @post | result==getHitTimes() //error
 	 */
-	public int getHitTimes() {
-		return hitTimes;
+	public int getHitTimes() { //error
+		return hitTimes; //error
 	}
 
 	/**

@@ -59,7 +59,7 @@ public class NormalBall extends Ball{
 		setVelocity(nspeed);			
 		if (block.charged()) {
 			return new SuperChargedBall(this.getLocation(),nspeed,System.currentTimeMillis());
-		} else if (block.replicateBall()) {
+		} else if (block.replicateBall()) { // blockState replicateBall() error
 			//this.Repaint(new Color(102,0,153));
 			this.setReplicate(true);
 			return this;

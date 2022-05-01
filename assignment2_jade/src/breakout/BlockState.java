@@ -53,7 +53,7 @@ public abstract class BlockState implements Colors{
 	
 	/**
 	 * Return whether this ball is replicated by this block.
-	 * @post | result == false
+	 * @post | result == false //error
 	 */
 	protected boolean replicateBall() {
 		return false;
