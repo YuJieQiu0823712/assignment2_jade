@@ -17,6 +17,7 @@ public abstract class Ball implements Colors,changePaddle{
 	/**
 	 * @invar | location != null
 	 * @invar | velocity != null
+	 * @representationObject
 	 */
 	private Circle location;
 	private Vector velocity;
@@ -118,11 +119,13 @@ public abstract class Ball implements Colors,changePaddle{
 	 * new velocity this ball will have after bouncing on the given ReplicatorPaddle.
 	 * 
 	 * @pre | paddle != null
-//	 * @post | 1<= getReplicateTimes &&  getReplicateTimes<=3
+	 * @post | 0 <= paddle.getReplicateTimes() &&  paddle.getReplicateTimes()<=3
 //	 * @post | paddle.getReplicateTimes() == 3 && result.equals(array.stream element|| element >=1 <=3) ||
 //	 *       | paddle.getReplicateTimes() == 2 && result.equals(getBalls().length==2) || 
 //	 *       | paddle.getReplicateTimes() == 1 && result.equals(getBalls().length==1)
-//	 * @post | element Arrays.stream(e->e.getVelocity().equals(this.getVelocity().plus(new Vector(2,-2))
+//	 * @post | Arrays.stream(newBalls).anyMatch(e -> e.getVelocity().equals(this.getVelocity().plus(new Vector(2,-2))))
+//   * @post | if (result.length ==2)  Arrays.stream(e->e.getvelocity == this.getvelocity.plus(new Vector(2, -2) 
+//	 * 			|| this.getvelocity.plus(new Vector(-2, 2)))  
 	 */
 	
 	protected Ball[] collideBallPaddle(PaddleState paddle) { // how to check collide?

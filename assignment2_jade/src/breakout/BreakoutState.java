@@ -22,8 +22,9 @@ import breakout.basics.Vector;
  * @invar | getField().contains(getPaddle().getLocation())
  */
 public class BreakoutState{
-
-	private static final Vector PADDLE_VEL = new Vector(200,0);
+	
+//	private static final Vector PADDLE_VEL = new Vector(200,0);
+	private static final Vector PADDLE_VEL = new Vector(10,0);
 	public static final int MAX_ELAPSED_TIME = 50;
 	/**
 	 * @invar | bottomRight != null
@@ -108,7 +109,6 @@ public class BreakoutState{
 	 */
 	public BlockState[] getBlocks() {
 		return blocks.clone();
-		
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class BreakoutState{
 			Ball[] newBalls = ball.collideBallPaddle(paddle);
 			Ball[] originBalls = Arrays.copyOf(balls, balls.length+newBalls.length);
 			
-			int i =1;
+			int i =1; 
 			for (Ball b : newBalls) {	
 				originBalls[balls.length+i-1] = b;
 				i++;
@@ -227,14 +227,14 @@ public class BreakoutState{
 	 * @mutates this
 	 */
 	public void tick(int paddleDir, int elapsedTime) {
-		stepBalls();
+		stepBalls(); 
 		bounceBallsOnWalls();
 		removeDeadBalls();
 		bounceBallsOnBlocks();
 		bounceBallsOnPaddle(paddleDir);
 		clampBalls();
 		balls = Arrays.stream(balls).filter(x -> x != null).toArray(Ball[]::new);
-	
+		
 	}
 
 	private void clampBalls() {
@@ -323,6 +323,4 @@ public class BreakoutState{
 	public boolean isDead() {
 		return getBalls().length == 0;
 	}
-	
-	
 }

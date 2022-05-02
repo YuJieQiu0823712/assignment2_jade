@@ -64,10 +64,3 @@ public class ReplicatorPaddle extends PaddleState {
 
 
 }
-
-
-	
-
-
-
-

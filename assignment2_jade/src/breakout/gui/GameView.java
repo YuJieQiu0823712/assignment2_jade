@@ -43,7 +43,7 @@ public class GameView extends JPanel {
 			moveBalls(timestamp);
 		});
 		ballTimer.start();
-	}
+	} 
 
 	/**
 	 * Create a new GameView for playing breakout starting from a given

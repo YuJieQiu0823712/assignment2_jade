@@ -68,7 +68,7 @@ public class Rect {
 	  */
 	 public boolean contains(Circle loc) {
 	 	return getTopLeft().plus(new Vector(loc.getDiameter(),loc.getDiameter())).isUpAndLeftFrom(getBottomRight()) &&
-	 			minusMargin(loc.getRadius()).contains(loc.getCenter());//? minus margin
+	 			minusMargin(loc.getRadius()).contains(loc.getCenter());
 	 }
 
 	/**
@@ -135,7 +135,7 @@ public class Rect {
 	 * @post | result.getY() == Math.min(getBottomRight().getY(), Math.max(getTopLeft().getY(), p.getY()))
 	 */
 	public Point constrain(Point p) {
-		int nx = Math.min(getBottomRight().getX(), Math.max(getTopLeft().getX(), p.getX())); //?
+		int nx = Math.min(getBottomRight().getX(), Math.max(getTopLeft().getX(), p.getX()));
 		int ny = Math.min(getBottomRight().getY(), Math.max(getTopLeft().getY(), p.getY()));
 		return new Point(nx, ny);
 	}

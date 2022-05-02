@@ -20,6 +20,9 @@ class SubmissionTestSuite {
 	BreakoutState stateWon;
 	BreakoutState stateDead;
 	BreakoutState stateBeforeBounceBlock;
+//	BreakoutState stateBounceSturdyBlock;
+//	BreakoutState stateBouncePowerupBlock;
+//	BreakoutState stateBounceReplicationBlock;
 	Vector origBallVelocity;
 	BlockState bounceBlock;
 	Ball ball;
@@ -69,6 +72,42 @@ class SubmissionTestSuite {
 		     =
 
 		""";
+//	
+//	public static final String initMapBeforeHitSturdyBlock = """
+//		       
+//		       
+//			o	       
+//			SSS	       
+//				       
+//				     
+//
+//				     =
+//
+//				""";
+//	
+//	public static final String initMapBeforeHitPowerupBlock = """
+//		       
+//		       
+//			o	       
+//			!!!	       
+//				       
+//				     
+//
+//				     =
+//
+//				""";
+//	
+//	public static final String initMapBeforeHitReplicationBlock = """
+//		       
+//		       
+//			o	       
+//			RRR	       
+//				       
+//				     
+//
+//				     =
+//
+//				""";
 
 
 	@BeforeEach
@@ -83,6 +122,11 @@ class SubmissionTestSuite {
 		stateWon = GameMap.createStateFromDescription(initMapWon);
 		stateDead = GameMap.createStateFromDescription(initMapDead);
 		stateBeforeBounceBlock = GameMap.createStateFromDescription(initMapBeforeBounce);
+//		stateBounceSturdyBlock = GameMap.createStateFromDescription(initMapBeforeHitSturdyBlock);
+//		stateBouncePowerupBlock = GameMap.createStateFromDescription(initMapBeforeHitPowerupBlock);
+//		stateBounceReplicationBlock = GameMap.createStateFromDescription(initMapBeforeHitReplicationBlock);
+		
+		
 	}
 
 	@Test
@@ -137,5 +181,29 @@ class SubmissionTestSuite {
 		assertFalse(stateWon.isDead());
 		assertTrue(stateDead.isDead());
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@Test
+//	void testTickBounceSturdyBlock() {
+//		for(int i = 0; i < 500; ++i) {
+//			stateBeforeBounceBlock.tick(1,1);
+//		}
+//		assertEquals(1,stateBeforeBounceBlock.getBalls().length);
+//		assertEquals(3,stateBeforeBounceBlock.getBlocks().length);
+//		assertEquals(new Vector(4,-5),stateBeforeBounceBlock.getBalls()[0].getVelocity());
+//		assertTrue(stateBeforeBounceBlock.getBlocks()[1].getClass().equals(oneBlock));
+//		
+//		assertEquals(2,stateBeforeBounceBlock.getBlocks()[1].getClass());
+//		
+//	}
+	
 
 }

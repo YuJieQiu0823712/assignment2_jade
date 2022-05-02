@@ -25,7 +25,7 @@ class SubmissionTestSuite2 {
 		oneBall = new Ball[] { ball };
 		block = facade.createNormalBlockState(new Point(0, 1051), new Point(2000, 1200));
 		oneBlock = new BlockState[] { block };
-		bottomRight = new Point(10000, 2000); //?
+		bottomRight = new Point(10000, 2000);
 		paddle = facade.createNormalPaddleState(new Point(2000, 1750));
 		stateBeforeBounceBlock = facade.createBreakoutState(oneBall, oneBlock, bottomRight, paddle);
 	}
@@ -53,4 +53,7 @@ class SubmissionTestSuite2 {
 		assertEquals(0, stateBeforeBounceBlock2.getBlocks().length);
 		assertEquals(new Vector(0, -5), stateBeforeBounceBlock2.getBalls()[0].getVelocity());
 	}
+	
+	
+	
 }

@@ -31,7 +31,7 @@ public class NormalBall extends Ball{
 
 	/**
 	 * Return new NormalBall
-//	 * @pre | loc != null
+	 * @pre | loc != null
 //	 * @pre |　nspeed != null
 	 * @creates | result
 	 */
