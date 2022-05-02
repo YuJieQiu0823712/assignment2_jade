@@ -3,6 +3,8 @@ package breakout;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.awt.Color;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,19 +17,58 @@ public class AllTests {
 
 	private Ball normalBall;
 	private Ball superChargedBall;
-
+	
+	private Ball normalBall1;
+	private Ball normalBall2;
+	private Ball normalBall3;
+	private Ball normalBall4;
+	private Ball superBall1;
+	private Ball superBall2;
+	private Ball superBall3;
+	private Ball superBall4;
+	
 	private Ball[] normalBalls;
 	private Ball[] superChargedBalls;
+	
+	private Ball[] normalBalls1;
+	private Ball[] normalBalls2;
+	private Ball[] normalBalls3;
+	private Ball[] normalBalls4;
+	
+	private Ball[] superBalls1;
+	private Ball[] superBalls2;
+	private Ball[] superBalls3;
+	private Ball[] superBalls4;
 
 	private BlockState normalBlock;
 	private BlockState sturdyBlock;
 	private BlockState powerUpBlock;
 	private BlockState replicationBlock;
+	
+	private BlockState normalBlock1;
+	private BlockState sturdyBlock2;
+	private BlockState replicationBlock4;;
+	
+	private BlockState powerUpBlock1;
+	private BlockState powerUpBlock2;
+	private BlockState powerUpBlock3;
+	private BlockState powerUpBlock4;
+	private BlockState powerUpBlock5;
 
 	private BlockState[] normalBlocks;
 	private BlockState[] sturdyBlocks;
 	private BlockState[] powerUpBlocks;
 	private BlockState[] ReplicationBlocks;
+	
+	private BlockState[] normalBlocks1;
+	private BlockState[] sturdyBlocks2;
+	private BlockState[] powerUpBlocks3;
+	private BlockState[] replicationBlocks4;
+	
+	private BlockState[] powerUpBlocksN;
+	private BlockState[] powerUpBlocksS;
+	private BlockState[] powerUpBlocksP;
+	private BlockState[] powerUpBlocksR;
 
 	private Point bottomRight;
 	private PaddleState normalPaddle;
@@ -38,10 +79,16 @@ public class AllTests {
 	private BreakoutState stateBeforeBouncePowerUpBlock;
 	private BreakoutState stateBeforeBounceReplicationBlock;
 	
-	private BreakoutState stateBeforeBounceNormalBlock2;
+	
+	private BreakoutState stateBeforeBounceNormalBlock1;
 	private BreakoutState stateBeforeBounceSturdyBlock2;
-	private BreakoutState stateBeforeBouncePowerUpBlock2;
-	private BreakoutState stateBeforeBounceReplicationBlock2;
+	private BreakoutState stateBeforeBouncePowerUpBlock3;
+	private BreakoutState stateBeforeBounceReplicationBlock4;
+
+//	private BreakoutState stateBeforeBounceNormalBlock2;
+//	private BreakoutState stateBeforeBounceSturdyBlock2;
+//	private BreakoutState stateBeforeBouncePowerUpBlock2;
+//	private BreakoutState stateBeforeBounceReplicationBlock2;
 
 	private BreakoutFacade facade = new BreakoutFacade();
 
@@ -84,46 +131,8 @@ public class AllTests {
 		bottomRight = new Point(10000, 2000);
 		normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
 		stateBeforeBounceReplicationBlock = facade.createBreakoutState(normalBalls, ReplicationBlocks, bottomRight, normalPaddle);
-
-		/////////
-		
-		//superchargedBall hits a normalBlock
-		superChargedBall = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
-		superChargedBalls = new Ball[] { superChargedBall };
-		normalBlock = facade.createNormalBlockState(new Point(0, 1051), new Point(2000, 1200));
-		normalBlocks = new BlockState[] { normalBlock };
-		bottomRight = new Point(10000, 2000);
-		normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
-		stateBeforeBounceNormalBlock2 = facade.createBreakoutState(superChargedBalls, normalBlocks, bottomRight, normalPaddle);
-
-		//superchargedBall hits a sturdyBlock
-		superChargedBall = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
-		superChargedBalls = new Ball[] { superChargedBall };
-		sturdyBlock = facade.createSturdyBlockState(new Point(0, 1051), new Point(2000, 1200),3);
-		sturdyBlocks = new BlockState[] { sturdyBlock };
-		bottomRight = new Point(10000, 2000);
-		normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
-		stateBeforeBounceSturdyBlock2 = facade.createBreakoutState(superChargedBalls, sturdyBlocks, bottomRight, normalPaddle);
-
-		//superchargedBall hits a powerUpBlock
-		superChargedBall = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
-		superChargedBalls = new Ball[] { superChargedBall };
-		powerUpBlock = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
-		powerUpBlocks = new BlockState[] { powerUpBlock };
-		bottomRight = new Point(10000, 2000);
-		normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
-		stateBeforeBouncePowerUpBlock2 = facade.createBreakoutState(superChargedBalls, powerUpBlocks, bottomRight, normalPaddle);
-				
-		//superchargedBall hits a replicationBlock
-		superChargedBall = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
-		superChargedBalls = new Ball[] { superChargedBall };
-		replicationBlock = facade.createReplicatorBlockState(new Point(0, 1051), new Point(2000, 1200));
-		ReplicationBlocks = new BlockState[] { replicationBlock };
-		bottomRight = new Point(10000, 2000);
-		normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
-		stateBeforeBounceReplicationBlock2 = facade.createBreakoutState(superChargedBalls, ReplicationBlocks, bottomRight, normalPaddle);
-
 	}
+
 
 
 	@Test
@@ -214,84 +223,339 @@ public class AllTests {
 		
 	}
 
-	////////
+
+	/////////
+@BeforeEach
+void setUp2() throws Exception {
+	//superchargedBall hits a normalBlock
+	normalBall1 = facade.createNormalBall(new Point(1000, 1000), 100, new Vector(0, 5));
+	normalBalls1 = new Ball[] { normalBall1 };
+	powerUpBlock1 = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
+	normalBlock1 = facade.createNormalBlockState(new Point(0, 1051+149), new Point(2000,1200+149));
+	powerUpBlocksN = new BlockState[] { powerUpBlock1,normalBlock1 };
+	bottomRight = new Point(10000, 2000);
+	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+	stateBeforeBounceNormalBlock1 = facade.createBreakoutState(normalBalls1, powerUpBlocksN, bottomRight, normalPaddle);
+
+	//superchargedBall hits a sturdyBlock
+	normalBall2 = facade.createNormalBall(new Point(1000, 1000), 100, new Vector(0, 5));
+	normalBalls2 = new Ball[] { normalBall2 };
+	powerUpBlock2 = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
+	sturdyBlock2 = facade.createSturdyBlockState(new Point(0, 1051+149), new Point(2000,1200+149),3);
+	powerUpBlocksS = new BlockState[] { powerUpBlock2,sturdyBlock2 };
+	bottomRight = new Point(10000, 2000);
+	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+	stateBeforeBounceSturdyBlock2 = facade.createBreakoutState(normalBalls2, powerUpBlocksS, bottomRight, normalPaddle);
+
+	//superchargedBall hits a powerUpBlock
+	normalBall3 = facade.createNormalBall(new Point(1000, 1000), 100, new Vector(0, 5));
+	normalBalls3 = new Ball[] { normalBall3 };
+	powerUpBlock3 = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
+	powerUpBlock4 = facade.createPowerupBallBlockState(new Point(0, 1051+149), new Point(2000,1200+149));
+	powerUpBlocksP = new BlockState[] { powerUpBlock3,powerUpBlock4 };
+	bottomRight = new Point(10000, 2000);
+	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+	stateBeforeBouncePowerUpBlock3 = facade.createBreakoutState(normalBalls3, powerUpBlocksP, bottomRight, normalPaddle);
+
+	//superchargedBall hits a replicationBlock
+	normalBall4 = facade.createNormalBall(new Point(1000, 1000), 100, new Vector(0, 5));
+	normalBalls4 = new Ball[] { normalBall4 };
+	powerUpBlock5 = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
+	replicationBlock4 = facade.createReplicatorBlockState(new Point(0, 1051+149), new Point(2000,1200+149));
+	powerUpBlocksR = new BlockState[] { powerUpBlock5,replicationBlock4 };
+	bottomRight = new Point(10000, 2000);
+	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+	stateBeforeBounceReplicationBlock4 = facade.createBreakoutState(normalBalls4, powerUpBlocksR, bottomRight, normalPaddle);
+
+}
 
 	@Test
-	void testTickSuperBallBounceNormalBlock() { // same velocity, destroyed block
-		stateBeforeBounceNormalBlock2.tick(1, 1);
-		assertEquals(1, stateBeforeBounceNormalBlock2.getBalls().length);
-		assertEquals(0, stateBeforeBounceNormalBlock2.getBlocks().length);
-		assertEquals(new Vector(0, 5), stateBeforeBounceNormalBlock2.getBalls()[0].getVelocity());// (0,-5)?
+	void testTickBounceNormalBlock1() { // same velocity, destroyed block
+		assertEquals(new Color(255,102,0),stateBeforeBounceNormalBlock1.getBalls()[0].pointBall()); // normalBall
+		assertEquals(new Vector(0, 5), stateBeforeBounceNormalBlock1.getBalls()[0].getVelocity()); 
+		
+		stateBeforeBounceNormalBlock1.tick(1, 1);
+		assertEquals(1, stateBeforeBounceNormalBlock1.getBalls().length);
+		assertEquals(1, stateBeforeBounceNormalBlock1.getBlocks().length);
+		assertEquals(stateBeforeBounceNormalBlock1.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall");
+		assertEquals(new Vector(0, -5), stateBeforeBounceNormalBlock1.getBalls()[0].getVelocity()); //velocity changes at the first hit.
+		assertEquals(new Color(255,255,0),stateBeforeBounceNormalBlock1.getBalls()[0].pointBall()); 
+
+		
+		//After tick 200 times, the ball hits the game field top and bounce back.
+		for (int i =0; i<=200; i++) {
+			stateBeforeBounceNormalBlock1.tick(1, 1);
+		}
+		assertEquals(new Vector(0, 5), stateBeforeBounceNormalBlock1.getBalls()[0].getVelocity());
+		
+		for (int i =0; i<=250; i++) {
+			stateBeforeBounceNormalBlock1.tick(1, 1);
+		}
+		
+		//and hit the normal block.
+		assertEquals(0, stateBeforeBounceNormalBlock1.getBlocks().length); //The normal block is hit.
+		assertEquals(new Vector(0, 5), stateBeforeBounceNormalBlock1.getBalls()[0].getVelocity()); //The velocity doesn't change.
+		
+		
 	}
 	
 	
 	@Test
-	void testTickSuperBallBounceSturdyBlock() { // bounce back, block remain 2 time
-		assertEquals(3,((SturdyBlock) stateBeforeBounceSturdyBlock2.getBlocks()[0]).getHitTimes());
+	void testTickBounceSturdyBlock2() { // bounce back, block remain 2 time
+		assertEquals(new Color(255,102,0),stateBeforeBounceSturdyBlock2.getBalls()[0].pointBall()); // normalBall
+		assertEquals(new Vector(0, 5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity()); 
+		
 		stateBeforeBounceSturdyBlock2.tick(1, 1);
 		assertEquals(1, stateBeforeBounceSturdyBlock2.getBalls().length);
-		assertEquals(1, stateBeforeBounceSturdyBlock2.getBlocks().length); //block is still there.
+		assertEquals(1, stateBeforeBounceSturdyBlock2.getBlocks().length);
+		assertEquals(stateBeforeBounceSturdyBlock2.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall");
+		assertEquals(new Vector(0, -5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity()); //velocity changes at the first hit.
+		assertEquals(new Color(255,255,0),stateBeforeBounceSturdyBlock2.getBalls()[0].pointBall()); 
+
+		
+		//After tick 200 times, the ball hits the game field top and bounce back.
+		for (int i =0; i<=200; i++) {
+			stateBeforeBounceSturdyBlock2.tick(1, 1);
+		}
+		assertEquals(new Vector(0, 5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity());
+		assertEquals(3,((SturdyBlock) stateBeforeBounceSturdyBlock2.getBlocks()[0]).getHitTimes());
+		
+		for (int i =0; i<=250; i++) {
+			stateBeforeBounceSturdyBlock2.tick(1, 1);
+		}
+		
+		//and hit the sturdy block.
+		assertEquals(1, stateBeforeBounceSturdyBlock2.getBlocks().length); //The sturdy block is hit and still there.
 		assertEquals(2,((SturdyBlock) stateBeforeBounceSturdyBlock2.getBlocks()[0]).getHitTimes()); // HitTimes minus 1
-		assertEquals(new Vector(0, -5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity());
+		assertEquals(new Vector(0, -5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity()); //The velocity changes.
+		assertEquals(new Color(255,255,0),stateBeforeBounceSturdyBlock2.getBalls()[0].pointBall());
 		
 	}
 	
 	@Test
-	void testTickSuperBallBouncePowerUpBlock() { // same velocity, destroyed block
-		stateBeforeBouncePowerUpBlock2.tick(1, 1);
-		assertEquals(1, stateBeforeBouncePowerUpBlock2.getBalls().length);
-		assertEquals(0, stateBeforeBouncePowerUpBlock2.getBlocks().length);
-		assertEquals(stateBeforeBouncePowerUpBlock2.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall"); 
-//		assertEquals(new Vector(0, 5), stateBeforeBouncePowerUpBlock2.getBalls()[0].getVelocity()); //(0-5)?
+	void testTickBouncePowerUpBlock2() { // same velocity, destroyed block
+		assertEquals(new Color(255,102,0),stateBeforeBouncePowerUpBlock3.getBalls()[0].pointBall()); // normalBall
+		assertEquals(new Vector(0, 5), stateBeforeBouncePowerUpBlock3.getBalls()[0].getVelocity()); 
 		
+		stateBeforeBouncePowerUpBlock3.tick(1, 1);
+		assertEquals(1, stateBeforeBouncePowerUpBlock3.getBalls().length);
+		assertEquals(1, stateBeforeBouncePowerUpBlock3.getBlocks().length);
+		assertEquals(stateBeforeBouncePowerUpBlock3.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall");
+		assertEquals(new Vector(0, -5), stateBeforeBouncePowerUpBlock3.getBalls()[0].getVelocity()); //velocity changes at the first hit.
+		assertEquals(new Color(255,255,0),stateBeforeBouncePowerUpBlock3.getBalls()[0].pointBall()); 
+
+		
+		//After tick 200 times, the ball hits the game field top and bounce back.
+		for (int i =0; i<=200; i++) {
+			stateBeforeBouncePowerUpBlock3.tick(1, 1);
+		}
+		assertEquals(new Vector(0, 5), stateBeforeBouncePowerUpBlock3.getBalls()[0].getVelocity());
+		
+		
+		for (int i =0; i<=250; i++) {
+			stateBeforeBouncePowerUpBlock3.tick(1, 1);
+		}
+		
+		//and hit the powerUp block.
+		assertEquals(0, stateBeforeBouncePowerUpBlock3.getBlocks().length); //The powerUp block is destroyed.
+		
+		assertEquals(new Vector(0, 5), stateBeforeBouncePowerUpBlock3.getBalls()[0].getVelocity()); //The velocity doesn't change.
+		assertEquals(new Color(255,255,0),stateBeforeBouncePowerUpBlock3.getBalls()[0].pointBall());
+	
 	}
 	
 	
 	
 	@Test
 	void testTickSuperBallBounceReplicationBlock() { // same velocity, destroyed block, replicatorPaddle
-		stateBeforeBounceReplicationBlock2.tick(1, 1);
-		assertEquals(1, stateBeforeBounceReplicationBlock2.getBalls().length);
-		assertEquals(0, stateBeforeBounceReplicationBlock2.getBlocks().length);
-//		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock2.getBalls()[0].getVelocity());//(0-5)?
-		assertEquals(stateBeforeBounceReplicationBlock2.getPaddle().getClass().toString(),"class breakout.ReplicatorPaddle"); //create a replicator paddle 
-		assertEquals(3,((ReplicatorPaddle) stateBeforeBounceReplicationBlock2.getPaddle()).getReplicateTimes());
+		assertEquals(new Color(255,102,0),stateBeforeBounceReplicationBlock4.getBalls()[0].pointBall()); // normalBall
+		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); 
 		
+		assertEquals(stateBeforeBounceReplicationBlock4.getBlocks().getClass().toString(),"class breakout.ReplicationBlock"); 
+		//[Lbreakout.BlockState; ? cannot create replicatorBlock
+		
+		stateBeforeBounceReplicationBlock4.tick(1, 1);
+		assertEquals(1, stateBeforeBounceReplicationBlock4.getBalls().length);
+		assertEquals(1, stateBeforeBounceReplicationBlock4.getBlocks().length);
+		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall");
+		assertEquals(new Vector(0, -5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); //velocity changes at the first hit.
+		assertEquals(new Color(255,255,0),stateBeforeBounceReplicationBlock4.getBalls()[0].pointBall()); 
+
+		
+		//After tick 200 times, the ball hits the game field top and bounce back.
+		for (int i =0; i<=200; i++) {
+			stateBeforeBounceReplicationBlock4.tick(1, 1);
+		}
+		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity());
+		
+		for (int i =0; i<=250; i++) {
+			stateBeforeBounceReplicationBlock4.tick(1, 1);
+		}
+		
+		//and hit the replication block.
+		assertEquals(0, stateBeforeBounceReplicationBlock4.getBlocks().length);
+		assertEquals(stateBeforeBounceReplicationBlock4.getPaddle().getClass().toString(),"class breakout.ReplicatorPaddle"); //create a replicator paddle 
+		assertEquals(3,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes());
+		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); //The velocity doesn't change.
+		assertEquals(new Color(255,255,0),stateBeforeBounceReplicationBlock4.getBalls()[0].pointBall());
+
 
 		//The ball hits the replicator paddle and then creates 3 additional balls with respective velocity
 		for (int i =0; i<=500; i++) {
-			stateBeforeBounceReplicationBlock2.tick(1, 1);
+			stateBeforeBounceReplicationBlock4.tick(1, 1);
 		}
-		assertEquals(4, stateBeforeBounceReplicationBlock2.getBalls().length);
-		assertEquals(new Vector(2, -5), stateBeforeBounceReplicationBlock2.getBalls()[0].getVelocity());
-		assertEquals(stateBeforeBounceReplicationBlock2.getBalls()[0].getVelocity().plus(new Vector(2, -2)), stateBeforeBounceReplicationBlock2.getBalls()[1].getVelocity());
-		assertEquals(stateBeforeBounceReplicationBlock2.getBalls()[0].getVelocity().plus(new Vector(-2, 2)), stateBeforeBounceReplicationBlock2.getBalls()[2].getVelocity());
-		assertEquals(stateBeforeBounceReplicationBlock2.getBalls()[0].getVelocity().plus(new Vector(2, 2)), stateBeforeBounceReplicationBlock2.getBalls()[3].getVelocity());
+		assertEquals(4, stateBeforeBounceReplicationBlock4.getBalls().length);
+		assertEquals(new Vector(2, -5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity());
+		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(2, -2)), stateBeforeBounceReplicationBlock4.getBalls()[1].getVelocity());
+		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(-2, 2)), stateBeforeBounceReplicationBlock4.getBalls()[2].getVelocity());
+		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(2, 2)), stateBeforeBounceReplicationBlock4.getBalls()[3].getVelocity());
 		
 		//The paddle's ReplicateTimes minus one
-		assertEquals(2,((ReplicatorPaddle) stateBeforeBounceReplicationBlock2.getPaddle()).getReplicateTimes()); 
+		assertEquals(2,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes()); 
 		
 		
 		for (int i =0; i<=500; i++) {
-			stateBeforeBounceReplicationBlock2.tick(1, 1);
+			stateBeforeBounceReplicationBlock4.tick(1, 1);
 		}
 		//The paddle's ReplicateTimes minus one
-		assertEquals(1,((ReplicatorPaddle) stateBeforeBounceReplicationBlock2.getPaddle()).getReplicateTimes());
+		assertEquals(1,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes());
 		
 		
 		for (int i =0; i<=500; i++) {
-			stateBeforeBounceReplicationBlock2.tick(1, 1);
+			stateBeforeBounceReplicationBlock4.tick(1, 1);
 		}
 		
 		
 		//The paddle change back to normal paddle after hit 3 times
-		assertEquals(stateBeforeBounceReplicationBlock2.getPaddle().getClass().toString(),"class breakout.NormalPaddle");   
+		assertEquals(stateBeforeBounceReplicationBlock4.getPaddle().getClass().toString(),"class breakout.NormalPaddle");   
 
 		
-		
 	}
+
+	
+//  [cannot directly use superChargedBall into tick method]
+//
+//@BeforeEach
+//void setUp2() throws Exception {
+//	//superchargedBall hits a normalBlock
+//	superBall1 = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
+//	superBalls1 = new Ball[] { superBall1 };
+//	normalBlock1 = facade.createNormalBlockState(new Point(0, 1051), new Point(2000, 1200));
+//	normalBlocks1 = new BlockState[] { normalBlock1 };
+//	bottomRight = new Point(10000, 2000);
+//	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+//	stateBeforeBounceNormalBlock1 = facade.createBreakoutState(superBalls1, normalBlocks1, bottomRight, normalPaddle);
+//
+//	//superchargedBall hits a sturdyBlock
+//	superBall2 = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
+//	superBalls2 = new Ball[] { superBall2 };
+//	sturdyBlock2 = facade.createSturdyBlockState(new Point(0, 1051), new Point(2000,1200),3);
+//	sturdyBlocks2 = new BlockState[] { sturdyBlock2 };
+//	bottomRight = new Point(10000, 2000);
+//	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+//	stateBeforeBounceSturdyBlock2 = facade.createBreakoutState(superBalls2, sturdyBlocks2, bottomRight, normalPaddle);
+//
+//	//superchargedBall hits a powerUpBlock
+//	superBall3 = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
+//	superBalls3 = new Ball[] { superBall3 };
+//	powerUpBlock3 = facade.createPowerupBallBlockState(new Point(0, 1051), new Point(2000, 1200));
+//	powerUpBlocks3 = new BlockState[] { powerUpBlock3 };
+//	bottomRight = new Point(10000, 2000);
+//	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+//	stateBeforeBouncePowerUpBlock3 = facade.createBreakoutState(superBalls3, powerUpBlocks3, bottomRight, normalPaddle);
+//
+//	//superchargedBall hits a replicationBlock
+//	superBall4 = facade.createSuperchargedBall(new Point(1000, 1000), 100, new Vector(0, 5),5000);
+//	superBalls4 = new Ball[] { superBall4 };
+//	replicationBlock4 = facade.createReplicatorBlockState(new Point(0, 1051), new Point(2000,1200));
+//	replicationBlocks4 = new BlockState[] { replicationBlock4 };
+//	bottomRight = new Point(10000, 2000);
+//	normalPaddle = facade.createNormalPaddleState(new Point(2000, 1750));
+//	stateBeforeBounceReplicationBlock4 = facade.createBreakoutState(superBalls4, replicationBlocks4, bottomRight, normalPaddle);
+//
+//}
+
 	
 	
+//	@Test
+//	void testTickBounceNormalBlock2() { // same velocity, destroyed block
+//		stateBeforeBounceNormalBlock1.tick(1, 1);
+//		assertEquals(1, stateBeforeBounceNormalBlock1.getBalls().length);
+//		assertEquals(0, stateBeforeBounceNormalBlock1.getBlocks().length);
+////		assertEquals(new Vector(0, 5), stateBeforeBounceNormalBlock1.getBalls()[0].getVelocity());// (0,-5)?
+////		assertEquals(new Color(255,255,0),stateBeforeBounceNormalBlock1.getBalls()[0].pointBall());//(255,102,0)?
+//	}
+//	
+//	@Test
+//	void testTickBounceSturdyBlock2() { // bounce back, block remain 2 time
+//		assertEquals(3,((SturdyBlock) stateBeforeBounceSturdyBlock2.getBlocks()[0]).getHitTimes());
+//		stateBeforeBounceSturdyBlock2.tick(1, 1);
+//		assertEquals(1, stateBeforeBounceSturdyBlock2.getBalls().length);
+//		assertEquals(1, stateBeforeBounceSturdyBlock2.getBlocks().length); //block is still there.
+//		assertEquals(2,((SturdyBlock) stateBeforeBounceSturdyBlock2.getBlocks()[0]).getHitTimes()); // HitTimes minus 1
+//		assertEquals(new Vector(0, -5), stateBeforeBounceSturdyBlock2.getBalls()[0].getVelocity());
+////		assertEquals(new Color(255,255,0),stateBeforeBounceSturdyBlock2.getBalls()[0].pointBall());//(255,102,0)?
+//	}
+//	
+//	@Test
+//	void testTickBouncePowerUpBlock2() { // same velocity, destroyed block
+//		stateBeforeBouncePowerUpBlock3.tick(1, 1);
+//		assertEquals(1, stateBeforeBouncePowerUpBlock3.getBalls().length);
+//		assertEquals(0, stateBeforeBouncePowerUpBlock3.getBlocks().length);
+//		assertEquals(stateBeforeBouncePowerUpBlock3.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall"); 
+////		assertEquals(new Vector(0, 5), stateBeforeBouncePowerUpBlock3.getBalls()[0].getVelocity()); //(0-5)?
+//		assertEquals(new Color(255,255,0),stateBeforeBouncePowerUpBlock3.getBalls()[0].pointBall());
+//	}
+//	
+//	
+//	
+//	@Test
+//	void testTickBounceReplicationBlock2() { // same velocity, destroyed block, replicatorPaddle
+//		
+//		assertEquals(new Color(255,255,0),stateBeforeBounceReplicationBlock4.getBalls()[0].pointBall()); // superBall
+//		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); 
+//		
+//		stateBeforeBounceReplicationBlock4.tick(1, 1);
+//		assertEquals(1, stateBeforeBounceReplicationBlock4.getBalls().length);
+//		assertEquals(0, stateBeforeBounceReplicationBlock4.getBlocks().length); //destroyed replicationBlock
+////		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getClass().toString(),"class breakout.SuperChargedBall"); //normalBall?
+//		assertEquals(stateBeforeBounceReplicationBlock4.getPaddle().getClass().toString(),"class breakout.ReplicatorPaddle"); //create a replicator paddle 
+//		assertEquals(3,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes());
+////		assertEquals(new Vector(0, 5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); //(0-5)?
+////		assertEquals(new Color(255,255,0),stateBeforeBounceReplicationBlock4.getBalls()[0].pointBall()); //(255,255,102)?
+//
+//		
+//		//After tick 111 times, the ball hits the replicatorPaddle and then creates 3 additional balls with respective velocity.
+//		for (int i =0; i<=111; i++) {
+//			stateBeforeBounceReplicationBlock4.tick(1, 1);
+//		}
+//		
+//		assertEquals(4, stateBeforeBounceReplicationBlock4.getBalls().length); //1?
+//		assertEquals(new Vector(2, -5), stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity()); //(0,-5)?
+//		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(2, -2)), stateBeforeBounceReplicationBlock4.getBalls()[1].getVelocity());
+//		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(-2, 2)), stateBeforeBounceReplicationBlock4.getBalls()[2].getVelocity());
+//		assertEquals(stateBeforeBounceReplicationBlock4.getBalls()[0].getVelocity().plus(new Vector(2, 2)), stateBeforeBounceReplicationBlock4.getBalls()[3].getVelocity());
+//
+//		//The paddle's ReplicateTimes minus one
+//		assertEquals(2,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes()); 
+//		
+//		//Tick 100 times
+//		for (int i =0; i<=500; i++) {
+//			stateBeforeBounceReplicationBlock4.tick(1, 1);
+//		}
+//		//The paddle's ReplicateTimes minus one
+//		assertEquals(1,((ReplicatorPaddle) stateBeforeBounceReplicationBlock4.getPaddle()).getReplicateTimes());
+//		
+//		//Tick 100 times
+//		for (int i =0; i<=500; i++) {
+//			stateBeforeBounceReplicationBlock4.tick(1, 1);
+//		}
+//		
+//		//The paddle change back to normal paddle after hit 3 times
+//		assertEquals(stateBeforeBounceReplicationBlock4.getPaddle().getClass().toString(),"class breakout.NormalPaddle");   
+//	
+//	
+//	}
 	
 	
 
