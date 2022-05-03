@@ -58,9 +58,8 @@ public class NormalBall extends Ball{
 		Vector nspeed = this.bounceOn(block.getLocation());
 		setVelocity(nspeed);			
 		if (block.charged()) {
-			return new SuperChargedBall(this.getLocation(),nspeed,System.currentTimeMillis());
-		} else if (block.replicateBall()) { // blockState replicateBall() error
-			//this.Repaint(new Color(102,0,153));
+			return new SuperChargedBall(this.getLocation(),nspeed,(int)System.currentTimeMillis());
+		} else if (block.replicateBall()) {
 			this.setReplicate(true);
 			return this;
 		}
@@ -68,8 +67,9 @@ public class NormalBall extends Ball{
 		else {
 			return this;
 		}
+
+
 	}
-	
 	/**
 	 * Return whether this NormalBall represents a same content with the obj.
 	 * @pre | obj!=null

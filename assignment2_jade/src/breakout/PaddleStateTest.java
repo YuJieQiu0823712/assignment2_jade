@@ -30,7 +30,7 @@ class PaddleStateTest {
 	void testGetLocation() {
 		assertEquals(new Point(1-PaddleState.WIDTH/2,1-PaddleState.HEIGHT/2), p1.getLocation().getTopLeft());
 		assertEquals(new Point(1+PaddleState.WIDTH/2,1+PaddleState.HEIGHT/2), p1.getLocation().getBottomRight());
-	}
+	} 
 	
 	
 	

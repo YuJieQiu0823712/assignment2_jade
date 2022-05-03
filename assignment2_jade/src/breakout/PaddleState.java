@@ -67,6 +67,8 @@ public abstract class PaddleState implements Colors{
 	 */
 	protected abstract boolean replicatorPaddle(Ball ball);
 	
+	
+	
 	/** 
 	 * @pre | paddle != null
 	 * @pre | ball != null   

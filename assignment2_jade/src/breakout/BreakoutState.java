@@ -22,7 +22,7 @@ import breakout.basics.Vector;
  * @invar | getField().contains(getPaddle().getLocation())
  */
 public class BreakoutState{
-	
+
 //	private static final Vector PADDLE_VEL = new Vector(200,0);
 	private static final Vector PADDLE_VEL = new Vector(10,0);
 	public static final int MAX_ELAPSED_TIME = 50;
@@ -234,7 +234,6 @@ public class BreakoutState{
 		bounceBallsOnPaddle(paddleDir);
 		clampBalls();
 		balls = Arrays.stream(balls).filter(x -> x != null).toArray(Ball[]::new);
-		
 	}
 
 	private void clampBalls() {

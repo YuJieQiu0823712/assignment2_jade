@@ -41,7 +41,7 @@ class BallTest {
 		c052 = new Circle(p05,2);
 		c389 = new Circle(p38,9);
 		v1010 = new Vector(10,10);
-		long time = System.currentTimeMillis();
+		int time = (int)System.currentTimeMillis();
 		b1 = new NormalBall(c052, v1010);
 		b2 = new SuperChargedBall(c052,v1010,time);
 	}
@@ -63,14 +63,14 @@ class BallTest {
 		
 		// ball
 		Circle c1 = new Circle(new Point(2500,3000+350), 700);  
-		
+				
 		Ball NormalBall1 = new NormalBall(c1, new Vector(4,5));
 		Ball NewBall1 = new NormalBall(c1, new Vector(6,3));
 		Ball NewBall2 = new NormalBall(c1, new Vector(2,7));		
 		Ball NewBall3 = new NormalBall(c1, new Vector(6,7));
 					
 		Ball[] Balls3 = new Ball[] {NewBall1,NewBall2,NewBall3};
-			
+					
 		// block
 		Rect NormalBlockLoc = new Rect(new Point (0,0), new Point (5000,3000));
 		Rect PowerupBlockLoc = new Rect(new Point (5000,0), new Point (10000,3000));
@@ -78,22 +78,28 @@ class BallTest {
 		BlockState NormalBlock = new NormalBlock(NormalBlockLoc);
 		BlockState PowerupBlock = new PowerupBlock(PowerupBlockLoc);
 		BlockState ReplicationBlock = new ReplicationBlock(ReplicationBlockLoc);
-				
+						
 		// paddle
 		Point p1 = new Point(10000,10000);
 		PaddleState NormalPaddle = new NormalPaddle(p1);
 		PaddleState ReplicatorPaddle3 = new ReplicatorPaddle(p1,3);
 		PaddleState ReplicatorPaddle2 = new ReplicatorPaddle(p1,2);	
 		PaddleState ReplicatorPaddle1 = new ReplicatorPaddle(p1,1);
-		
+				
+
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[0].getCenter()));
 		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[1].getCenter()));
 		assertTrue(Balls3[2].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle3)[2].getCenter()));
-		
+				
+
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[0].getCenter()));
 		assertTrue(Balls3[1].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle2)[1].getCenter()));
-		
+				
+
 		assertTrue(Balls3[0].getCenter().equals(NormalBall1.collideBallPaddle(ReplicatorPaddle1)[0].getCenter()));
+				
+		//NormalBall1.hitBlock(NormalBlockLoc, true);
+				
 				
 		assertEquals(700,NormalBall1.getDiameter());
 		

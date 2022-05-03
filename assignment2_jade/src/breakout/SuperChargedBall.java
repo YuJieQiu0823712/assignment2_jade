@@ -17,9 +17,9 @@ import breakout.basics.Vector;
 public class SuperChargedBall extends Ball{
 	
 	/**
-	 * @invar | startTime >= 0
+//	 * @invar | startTime > 0
 	 */
-	private long startTime; 
+	private int startTime; 
 
 	
 	/**
@@ -27,12 +27,12 @@ public class SuperChargedBall extends Ball{
 	 * 
 	 * @pre | location != null
 	 * @pre | velocity != null
-	 * @pre | startTime >= 0
+//	 * @pre | startTime > 0
 	 * @post | getLocation().equals(location)
 	 * @post | getVelocity().equals(velocity)
 	 * @post | startTime == startTime //? add get startTime
 	 */
-	public SuperChargedBall(Circle location, Vector velocity,long startTime) {
+	public SuperChargedBall(Circle location, Vector velocity,int startTime) {
 		super(location, velocity);
 		this.startTime = startTime;
 	}
@@ -55,9 +55,9 @@ public class SuperChargedBall extends Ball{
 	 */
 	@Override
 	protected Ball returnNewBall(Circle loc, Vector nspeed) {
-		if (System.currentTimeMillis()-startTime<10000) {
-			
-		return new SuperChargedBall(loc,nspeed,startTime);
+		if ((int)System.currentTimeMillis()-startTime<10000) {
+
+			return new SuperChargedBall(loc,nspeed,startTime);
 		} else {
 			return new NormalBall(loc,nspeed);
 		}
@@ -76,18 +76,22 @@ public class SuperChargedBall extends Ball{
 	 */
 	
 	@Override
-	public Ball collideBallBlocks(BlockState block,PaddleState paddle) { 
-			Vector nspeed = this.bounceOn(block.getLocation());
-			if(block.reflect()) {
-				setVelocity(nspeed);
-			}
-			if(block.charged()) {
-				return new SuperChargedBall(this.getLocation(),this.getVelocity(),System.currentTimeMillis());
-			} else {
+	public Ball collideBallBlocks(BlockState block,PaddleState paddle) {
+		Vector nspeed = this.bounceOn(block.getLocation());
+		if (block.replicateBall()) {
+			this.setReplicate(true);
+		}
+		if(block.reflect()) {
+			setVelocity(nspeed); 
+		}
+		if(block.charged()) {
+			return new SuperChargedBall(this.getLocation(),this.getVelocity(),(int)System.currentTimeMillis());
+		} else {
 			return this;
-			}
+		}
 
 	}
+
 	
 	/**
 	 * Return whether this SuperChargedBall represents a same content with the obj.
