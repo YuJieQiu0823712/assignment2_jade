@@ -129,25 +129,25 @@ public abstract class Ball implements Colors{
 	 * 
 	 * @pre | paddle != null
 	 * @post | 0 <= paddle.getReplicateTimes() &&  paddle.getReplicateTimes()<=3
-	 * @post | paddle.getReplicateTimes() == 3 && result.length==3 && //error
-	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
-	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,2)))) 
-	 *       | ||
-	 *       | paddle.getReplicateTimes() == 2 && result.length==2 &&
-	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
-	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) 
-	 *       | || 
-	 *       | paddle.getReplicateTimes() == 1 && result.length==1 &&
-	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
-	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
-	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2))))
-     *       | ||
-     *       | result.equals(this)   
+//	 * @post | paddle.getReplicateTimes() == 3 && result.length==3 && //error
+//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,2)))) 
+//	 *       | ||
+//	 *       | paddle.getReplicateTimes() == 2 && result.length==2 &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) 
+//	 *       | || 
+//	 *       | paddle.getReplicateTimes() == 1 && result.length==1 &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+//	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2))))
+//     *       | ||
+//     *       | result.equals(this)   
      *@creates | result
      *@mutates | this //?     
 	 */
