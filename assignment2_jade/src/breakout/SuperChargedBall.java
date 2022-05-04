@@ -7,13 +7,15 @@ import java.util.Calendar;
 
 import breakout.basics.Circle;
 import breakout.basics.Vector;
-
+/**
+ * @invar | getStartTime() >= 0 
+ * 
+ */
 public class SuperChargedBall extends Ball{
-	
 	/**
-//	 * @invar | getStartTime() > 0 //error
-	 * @representationObject
+	 * @invar | startTime >= 0
 	 */
+	
 	private int startTime; 
 
 
@@ -22,10 +24,10 @@ public class SuperChargedBall extends Ball{
 	 * 
 	 * @pre | location != null
 	 * @pre | velocity != null
-//	 * @pre | startTime >= 0 //error
+	 * @pre | startTime >= 0 
 	 * @post | getLocation().equals(location)
 	 * @post | getVelocity().equals(velocity)
-//	 * @post | getStartTime() == startTime 
+	 * @post | getStartTime() == startTime 
 	 * 
 	 */
 	public SuperChargedBall(Circle location, Vector velocity,int startTime) {
@@ -93,9 +95,7 @@ public class SuperChargedBall extends Ball{
 	 * @post | block.replicateBall() ?
 	 * 		 | this.isReplicate()
 	 * 		 | :
-	 * 		 | !this.isReplicate()
-	 * @creates | result 
-	 * @mutate | this //?    
+	 * 		 | !this.isReplicate() 
 	 */
 	
 	@Override

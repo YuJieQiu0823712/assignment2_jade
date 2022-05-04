@@ -58,8 +58,6 @@ public class NormalBall extends Ball{
 	 *       |    && result.equals(this)
 	 *       | ||  
 	 *       | result.equals(this)
-	 * @creates | result
-	 * @mutate | this//?
 	 *       
 	 */
 	@Override

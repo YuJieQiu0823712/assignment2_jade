@@ -16,7 +16,7 @@ public abstract class Ball implements Colors{
 	
 	/**
 	 * @invar | location != null
-	 * 
+	 * @representationObject
 	 */
 	private Circle location;
 	
@@ -26,15 +26,13 @@ public abstract class Ball implements Colors{
 	 */
 	private Vector velocity;
 	
-	/**
-	 * @representationObject
-	 */
+
 	private boolean replicate;
 	
 	/**
 	 * set velocity of this Ball.
 	 * @pre | velocity!=null
-	 * @post | getVelocity().equals(velocity) // p42
+	 * @post | getVelocity().equals(velocity) 
 	 */
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;
@@ -72,7 +70,6 @@ public abstract class Ball implements Colors{
 	 * new velocity this ball will have after bouncing on the given rect.
 	 * 
 	 * @pre | rect != null
-	 * @mutates | this //?
 	 * @post | (rect.collideWith(getLocation()) == null && result == null) ||
 	 *       | (getVelocity().product(rect.collideWith(getLocation())) <= 0 && result == null) || 
 	 *       | (result.equals(getVelocity().mirrorOver(rect.collideWith(getLocation()))))
@@ -137,19 +134,20 @@ public abstract class Ball implements Colors{
 //	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,2)))) 
 //	 *       | ||
 //	 *       | paddle.getReplicateTimes() == 2 && result.length==2 &&
-//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation())) && 
 //	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
 //	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
 //	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) 
 //	 *       | || 
 //	 *       | paddle.getReplicateTimes() == 1 && result.length==1 &&
-//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+//	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation())) &&
 //	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
 //	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2))))
 //     *       | ||
-//     *       | result.equals(this)   
+//     *       | paddle.getReplicateTimes() == 0  && result.length==0 
+     *       | 
      *@creates | result
-     *@mutates | this //?     
+     *@inspect | this  
 	 */
 	public Ball[] collideBallPaddle(PaddleState paddle) {
 		Ball[] newBalls = new Ball[paddle.getReplicateTimes()];
@@ -181,9 +179,7 @@ public abstract class Ball implements Colors{
 
 	/**
 	 * set this ball is replicated.
-	 * @pre | replicate == true || replicate == false
-	 * @post | isReplicate()==replicate // p42
-	 * @mutates | this //?replicate
+	 * @post | isReplicate()==replicate 
 	 */
 	public void setReplicate(boolean replicate) {
 		this.replicate = replicate;
@@ -193,8 +189,7 @@ public abstract class Ball implements Colors{
 	 * check whether this ball is collide with the block or paddle.
 	 * @pre | block != null
 	 * @pre | paddle != null
-	 * @creates | result
-	 * @mutate | this//?
+	 * @inspect | this
 	 */
 	public abstract Ball collideBallBlocks(BlockState block,PaddleState paddle) ;
 

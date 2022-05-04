@@ -37,9 +37,9 @@ public abstract class BlockState implements Colors{
 	/**
 	 * Return NewBlock.
 	 * @creates | result
-	 * @post | result == null ||
-	 *       | result!=null 
-	 * @inspect | this //?
+//	 * @post | result == null ||
+//	 *       | result !=null
+	 * @inspect | this 
 	 */
 	public abstract BlockState returnNewBlock(Rect location);
 	

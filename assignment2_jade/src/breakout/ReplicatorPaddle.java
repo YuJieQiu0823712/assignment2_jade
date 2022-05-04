@@ -14,6 +14,7 @@ public class ReplicatorPaddle extends PaddleState {
 	
 	/**
 	 * @invar | 0<replicateTimes && replicateTimes<=3
+	 * @representaionObject//
 	 */
 	private int replicateTimes;
 
@@ -57,6 +58,7 @@ public class ReplicatorPaddle extends PaddleState {
 	 * @pre | newCenter != null
 	 * @creates | result
 	 * @post | result.getReplicateTimes() == getReplicateTimes()
+	 * @inspect | this//
 	 */
 	@Override
 	public PaddleState returnNewPaddle(Point newCenter) {
@@ -65,14 +67,19 @@ public class ReplicatorPaddle extends PaddleState {
 
 	/**
 	 * @pre | ball != null
-	 * @inspects | ball
 	 */
 	@Override
 	public boolean replicatorPaddle(Ball ball) {	
 		return ball.isReplicate();
 	}
 	
-	
+	/**
+	 * Return whether this ReplicatorPaddle represents a same content with the obj.
+	 * @pre | obj!=null
+	 * @post | obj instanceof ReplicatorPaddle rp &&
+	 *       | rp.getCenter().equals(this.getCenter()) &&
+	 *       | rp.getReplicateTimes()==this.getReplicateTimes()
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof ReplicatorPaddle rp &&
@@ -80,6 +87,10 @@ public class ReplicatorPaddle extends PaddleState {
 				rp.getReplicateTimes()==replicateTimes;
 	}
 	
+	/**
+	 * Return a string representation of this center.
+	 * @post | result != null
+	 */
 	@Override
 	public String toString() {
 		return this.getCenter().toString();

@@ -43,11 +43,23 @@ public class NormalPaddle extends PaddleState{
 
 	}
 	
+	/**
+	 * Return whether this NormalPaddle represents a same content with the obj.
+	 * @pre | obj!=null
+	 * @post | obj instanceof NormalPaddle np &&
+	 *       | np.getCenter().equals(this.getCenter()) 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NormalPaddle np &&
 				np.getCenter().equals(getCenter());
 	} 
+	
+
+	/**
+	 * Return a string representation of this center.
+	 * @post | result != null
+	 */
 	
 	@Override
 	public String toString() {

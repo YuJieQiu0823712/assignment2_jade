@@ -75,7 +75,7 @@ public abstract class PaddleState implements Colors{
 	/** 
 	 * @pre | paddle != null
 	 * @pre | ball != null  
-	 * @inspects | ball 
+	 * @inspects | this
 	 * @post | result != null
 	 * @post | result.getCenter().equals(old(getCenter()))
 	 */

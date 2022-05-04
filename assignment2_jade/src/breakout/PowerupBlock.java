@@ -43,7 +43,6 @@ public class PowerupBlock extends BlockState{
 
 	/**
 	 * Return whether this PowerupBlock is reflect.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean reflect() {
@@ -53,7 +52,6 @@ public class PowerupBlock extends BlockState{
 
 	/**
 	 * Return whether this PowerupBlock is charged.
-	 * @post | result == true
 	 */
 	@Override
 	public boolean charged() {
@@ -64,8 +62,8 @@ public class PowerupBlock extends BlockState{
 	/**
 	 * Return whether this PowerupBlock represents a same content with the obj.
 	 * @pre | obj!=null
-	 * @post | obj instanceof PowerupBlock pblock &&
-	 *       | pblock.getLocation().equals(this.getLocation())
+//	 * @post | obj instanceof PowerupBlock pblock &&
+//	 *       | pblock.getLocation().equals(this.getLocation())
 	 *   
 	 */
 	@Override

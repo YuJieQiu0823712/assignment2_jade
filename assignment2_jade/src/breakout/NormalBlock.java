@@ -31,7 +31,6 @@ public class NormalBlock extends BlockState{
 
 	/**
 	 * Return whether this NormalBlock is reflect.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean reflect() {
@@ -40,7 +39,6 @@ public class NormalBlock extends BlockState{
 
 	/**
 	 * Return whether this NormalBlock is charged.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean charged() {

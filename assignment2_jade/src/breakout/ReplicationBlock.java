@@ -41,7 +41,6 @@ public class ReplicationBlock extends BlockState {
 
 	/**
 	 * Return whether this ReplicationBlock is reflect.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean reflect() {
@@ -50,7 +49,6 @@ public class ReplicationBlock extends BlockState {
 
 	/**
 	 * Return whether this ReplicationBlock is charged.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean charged() {
@@ -60,7 +58,6 @@ public class ReplicationBlock extends BlockState {
 	
 	/**
 	 * Return whether this ReplicationBlock replicates Ball.
-	 * @post | result == true
 	 */
 	@Override
 	public boolean replicateBall() {

@@ -40,6 +40,7 @@ public class SturdyBlock extends BlockState{
 	 *       | result.equals(new Color(51,51,51)) ||
 	 *       | result.equals(new Color(153,153,153))
 	 * @creates | result
+	 * @inspect | this 
 	 */
 	@Override
 	public Color pointBlock() {
@@ -57,9 +58,7 @@ public class SturdyBlock extends BlockState{
 	 * Return NewBlock.
 	 * @post | result == null ||
 	 *       | result.equals(new SturdyBlock(location,getHitTimes()-1))
-	 * @creates | result
-	 * @mutates| this//? textbook p81
-	 * @inspect | this //?
+	 * @inspect | this 
 	 */
 	@Override
 	public BlockState returnNewBlock(Rect location) {
@@ -73,7 +72,7 @@ public class SturdyBlock extends BlockState{
 
 	/**
 	 * Return whether this SturdyBlock is reflect.
-	 * @inspect | this //?
+	 * @inspect | this 
 	 */
 	@Override
 	public boolean reflect() {
@@ -87,7 +86,6 @@ public class SturdyBlock extends BlockState{
 
 	/**
 	 * Return whether this SturdyBlock is charged.
-	 * @post | result == false
 	 */
 	@Override
 	public boolean charged() {
