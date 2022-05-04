@@ -1,36 +1,32 @@
 package breakout;
 
 import java.awt.Color;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 import breakout.basics.Circle;
-import breakout.basics.Point;
-import breakout.basics.Rect;
 import breakout.basics.Vector;
-
-/**
- * Represents the state of a SuperChargedBall in the breakout game.
- * @mutable
- * @invar | getLocation() != null
- * @invar | getVelocity() != null
- */
 
 public class SuperChargedBall extends Ball{
 	
 	/**
-//	 * @invar | startTime > 0
+//	 * @invar | getStartTime() > 0 //error
+	 * @representationObject
 	 */
 	private int startTime; 
 
-	
+
 	/**
 	 * Construct a SuperChargedBall with the given location, velocity, startTime.
 	 * 
 	 * @pre | location != null
 	 * @pre | velocity != null
-//	 * @pre | startTime > 0
+//	 * @pre | startTime >= 0 //error
 	 * @post | getLocation().equals(location)
 	 * @post | getVelocity().equals(velocity)
-	 * @post | startTime == startTime //? add get startTime
+//	 * @post | getStartTime() == startTime 
+	 * 
 	 */
 	public SuperChargedBall(Circle location, Vector velocity,int startTime) {
 		super(location, velocity);
@@ -38,24 +34,33 @@ public class SuperChargedBall extends Ball{
 	}
 
 	/**
+	 * Return the startTime of this superChargedBall.
+	 */
+	public int getStartTime() {
+		return startTime;
+	}
+
+	/**
 	 * Return the color of this ball.
 	 * @post | result.equals(new Color(255,255,0))
-	 * @creates result //?
+	 * @creates | result
 	 */
 	@Override
 	public Color pointBall() {
 		return new Color(255,255,0);
 	}
 
-	
 	/**
 	 * Return the NewBall with given location and velocity.
-//	 * @post | result.equals(new SuperChargedBall(loc,nspeed,startTime))//?protected
-	 * @creates result 
-	 */
+//	 * @post | System.currentTimeMillis()-getStartTime()<10000 ?
+//	 *       | result.equals(new SuperChargedBall(loc,nspeed,getStartTime()))
+//	 *       | :
+//	 *       | result.equals(new NormalBall(loc,nspeed))
+	 * @creates | result 
+	 */ 
 	@Override
-	protected Ball returnNewBall(Circle loc, Vector nspeed) {
-		if ((int)System.currentTimeMillis()-startTime<10000) {
+	public Ball returnNewBall(Circle loc, Vector nspeed) {
+		if (currentTimeMillis()-startTime<10000) {
 
 			return new SuperChargedBall(loc,nspeed,startTime);
 		} else {
@@ -68,16 +73,35 @@ public class SuperChargedBall extends Ball{
 	 * new velocity this ball will have after bouncing on the given block and
 	 * decide whether NormalBall changes to SuperChargedBall
 	 * 
-	 * @mutate
-//	 * @pre | block.getLocation() != null
-//	 * @post | block.charged().equals(True) && result.equals(new SuperChargedBall(this.getLocation(),this.getVelocity(),System.currentTimeMillis())) || // ?protected
-//	 *       | block.reflect().equals(True) && result.equals(setVelocity(this.bounceOn(block.getLocation()))) || //?protected 
+	 * 
+	 * @pre | block != null
+	 * @pre | paddle != null
+	 * 
+	 *
+	 * @post | block.charged() == true 
+	 * 		 |    && result.getLocation().equals(old(this).getLocation()) 
+	 * 		 |	  && result.getVelocity().equals(old(this).getVelocity()) 
+	 * 		 |	  && result.getDiameter()==old(this).getDiameter()
+	 * 		 | || 
+	 *       | block.reflect() == true 
+	 *       |    && result.getLocation().equals(old(this).getLocation()) 
+	 *       |    && result.getVelocity().equals(old(this).bounceOn(block.getLocation())) 
+	 *       |	  && result.getDiameter()==old(this).getDiameter()
+	 *       | ||  
 	 *       | result.equals(this)
+	 * 
+	 * @post | block.replicateBall() ?
+	 * 		 | this.isReplicate()
+	 * 		 | :
+	 * 		 | !this.isReplicate()
+	 * @creates | result 
+	 * @mutate | this //?    
 	 */
 	
 	@Override
 	public Ball collideBallBlocks(BlockState block,PaddleState paddle) {
 		Vector nspeed = this.bounceOn(block.getLocation());
+
 		if (block.replicateBall()) {
 			this.setReplicate(true);
 		}
@@ -85,25 +109,39 @@ public class SuperChargedBall extends Ball{
 			setVelocity(nspeed); 
 		}
 		if(block.charged()) {
-			return new SuperChargedBall(this.getLocation(),this.getVelocity(),(int)System.currentTimeMillis());
+			return new SuperChargedBall(this.getLocation(),this.getVelocity(),currentTimeMillis());
 		} else {
 			return this;
 		}
 
 	}
-
 	
+	/**
+	 * Return currentTime of the SuperChargedBall.
+	 */
+	
+	private int currentTimeMillis() {
+		return (int)(System.currentTimeMillis()%1000000);	
+	}
+	
+	
+
 	/**
 	 * Return whether this SuperChargedBall represents a same content with the obj.
 	 * @pre | obj!=null
-	 */	
+	 * @post | obj instanceof SuperChargedBall sball &&
+	 *       | sball.getCenter().equals(this.getCenter()) &&
+	 *       | sball.getDiameter() == this.getDiameter() &&
+	 *       | sball.getVelocity().equals(this.getVelocity())
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof SuperChargedBall sball &&
 				sball.getCenter().equals(this.getCenter()) &&
-				sball.getDiameter() == this.getDiameter();
+				sball.getDiameter() == this.getDiameter() &&
+				sball.getVelocity().equals(this.getVelocity());
 	}
-	
+
 	/**
 	 * Return a string representation of this center.
 	 * @post | result != null
@@ -119,9 +157,11 @@ public class SuperChargedBall extends Ball{
 
 
 
-	
 
-	
+
+
+
+
 
 
 }

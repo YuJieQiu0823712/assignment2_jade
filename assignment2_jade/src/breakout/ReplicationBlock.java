@@ -3,11 +3,13 @@ package breakout;
 import java.awt.Color;
 
 import breakout.basics.Rect;
-import breakout.basics.Vector;
 
+/**
+ * Represents the state of a block in the breakout game.
+ * @immutable
+ */
 public class ReplicationBlock extends BlockState {
 	
-
 	/**
 	 * Construct a ReplicationBlock with the given location.
 	 * @pre | location != null
@@ -20,7 +22,7 @@ public class ReplicationBlock extends BlockState {
 	/**
 	 * Return the color of this ReplicationBlock.
 	 * @post | result.equals(new Color(102,0,153))
-	 * @creates result //?
+	 * @creates | result 
 	 */
 	@Override
 	public Color pointBlock() {
@@ -32,7 +34,7 @@ public class ReplicationBlock extends BlockState {
 	 * @post | result == null
 	 */
 	@Override
-	protected BlockState returnNewBlock(Rect location) {
+	public BlockState returnNewBlock(Rect location) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,7 +44,7 @@ public class ReplicationBlock extends BlockState {
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean reflect() {
+	public boolean reflect() {
 		return false;
 	}
 
@@ -51,7 +53,7 @@ public class ReplicationBlock extends BlockState {
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean charged() {
+	public boolean charged() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -61,19 +63,24 @@ public class ReplicationBlock extends BlockState {
 	 * @post | result == true
 	 */
 	@Override
-	protected boolean replicateBall() {
+	public boolean replicateBall() {
 		return true;
 	}
 	
 	/**
 	 * Return whether this ReplicationBlock represents a same content with the obj.
 	 * @pre | obj!=null
+	 * @post | obj instanceof ReplicationBlock rblock &&
+	 *       | rblock.getLocation().equals(this.getLocation())
+	 *   
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof ReplicationBlock rblock &&
 				rblock.getLocation().equals(this.getLocation());
 	}
+
+
 
 	
 	

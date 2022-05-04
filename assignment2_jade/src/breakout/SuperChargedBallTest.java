@@ -23,7 +23,7 @@ class SuperChargedBallTest {
 				
 		Ball NormalBall1 = new NormalBall(c1, new Vector(4,-5));		
 		Ball NormalBall2 = new NormalBall(c2, new Vector(4,-5));
-		SuperChargedBall SuperChargedBall2 = new SuperChargedBall(c2, new Vector(4,5),0);		
+		SuperChargedBall SuperChargedBall2 = new SuperChargedBall(c2, new Vector(4,5),(int)(System.currentTimeMillis()%1000000));		
 		Ball NormalBall3 = new NormalBall(c3, new Vector(4,-5));
 
 		// block
@@ -40,8 +40,9 @@ class SuperChargedBallTest {
 						
 		assertEquals(NormalBall1, NormalBall1.collideBallBlocks(NormalBlock, NormalPaddle)); 
 		assertEquals(SuperChargedBall2, NormalBall2.collideBallBlocks(PowerupBlock, NormalPaddle));
-		assertEquals(NormalBall3, NormalBall3.collideBallBlocks(ReplicationBlock, NormalPaddle)); // red
 		
+		assertEquals(NormalBall3, NormalBall3.collideBallBlocks(ReplicationBlock, NormalPaddle)); 
+		// blockState replicateBall() error
 				
 		assertTrue(SuperChargedBall2.equals(SuperChargedBall2));
 		assertEquals(NormalBall1,NormalBall1.returnNewBall(c1, new Vector(4,-5)));

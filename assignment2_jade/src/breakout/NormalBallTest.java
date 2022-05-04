@@ -10,6 +10,7 @@ import breakout.basics.Point;
 import breakout.basics.Rect;
 import breakout.basics.Vector;
 
+
 class NormalBallTest {
 
 	@Test

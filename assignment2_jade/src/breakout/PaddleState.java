@@ -27,7 +27,7 @@ public abstract class PaddleState implements Colors{
 	 * @post | getCenter().equals(center)
 	 */
 	public PaddleState(Point center) {
-		this.center = center;
+		this.center = center; 
 	}
 	
 	/**
@@ -48,31 +48,36 @@ public abstract class PaddleState implements Colors{
 		Vector halfDiag = new Vector(-WIDTH/2,-HEIGHT/2);
 		return new Rect(center.plus(halfDiag), center.plus(halfDiag.scaled(-1)));
 	}
-	
+
+// New methods below
 	
 	/**
 	 * @pre | newCenter != null
+	 * @creates | result
 	 * @post | result != null
 	 */
-	protected abstract PaddleState returnNewPaddle(Point newCenter);
+	public abstract PaddleState returnNewPaddle(Point newCenter);
 	
 	
 	/** 
 	 * @post | 0<=result && result<=3 
 	 */
-	protected abstract int getReplicateTimes();
+	public abstract int getReplicateTimes();
+	
 	
 	/**
 	 * @pre | ball != null  
 	 */
-	protected abstract boolean replicatorPaddle(Ball ball);
+	public abstract boolean replicatorPaddle(Ball ball);
 	
 	
 	
 	/** 
 	 * @pre | paddle != null
-	 * @pre | ball != null   
+	 * @pre | ball != null  
+	 * @inspects | ball 
 	 * @post | result != null
+	 * @post | result.getCenter().equals(old(getCenter()))
 	 */
 	public PaddleState changePaddle(PaddleState paddle,Ball ball) {
 

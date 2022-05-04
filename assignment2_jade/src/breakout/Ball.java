@@ -1,32 +1,40 @@
 package breakout;
 
+import java.util.Arrays;
+
 import breakout.basics.Circle;
 import breakout.basics.Point;
 import breakout.basics.Rect;
 import breakout.basics.Vector;
 
-
 /**
  * Represents the state of a ball in the breakout game.
- * @mutable
  * @invar | getLocation() != null
  * @invar | getVelocity() != null
  */
-public abstract class Ball implements Colors,changePaddle{
+public abstract class Ball implements Colors{
 	
 	/**
 	 * @invar | location != null
+	 * 
+	 */
+	private Circle location;
+	
+	/**
 	 * @invar | velocity != null
 	 * @representationObject
 	 */
-	private Circle location;
 	private Vector velocity;
-	private boolean replicate;
-	// data encaptuation
-
+	
 	/**
-	 * set velocity of this Ball. 
-	 * @mutate | this
+	 * @representationObject
+	 */
+	private boolean replicate;
+	
+	/**
+	 * set velocity of this Ball.
+	 * @pre | velocity!=null
+	 * @post | getVelocity().equals(velocity) // p42
 	 */
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;
@@ -47,7 +55,6 @@ public abstract class Ball implements Colors,changePaddle{
 	
 	/**
 	 * Return this ball's location.
-//	 * @post | result.equals()
 	 */
 	public Circle getLocation() {
 		return location;
@@ -65,6 +72,7 @@ public abstract class Ball implements Colors,changePaddle{
 	 * new velocity this ball will have after bouncing on the given rect.
 	 * 
 	 * @pre | rect != null
+	 * @mutates | this //?
 	 * @post | (rect.collideWith(getLocation()) == null && result == null) ||
 	 *       | (getVelocity().product(rect.collideWith(getLocation())) <= 0 && result == null) || 
 	 *       | (result.equals(getVelocity().mirrorOver(rect.collideWith(getLocation()))))
@@ -79,7 +87,6 @@ public abstract class Ball implements Colors,changePaddle{
 
 	/**
 	 * Return this point's center.
-	 * @post | getLocation().getCenter().equals(result)
 	 */
 	public Point getCenter() {
 		return getLocation().getCenter();
@@ -109,10 +116,12 @@ public abstract class Ball implements Colors,changePaddle{
 	 * Return new NormalBall
 	 * @pre | loc != null
 	 * @pre | nspeed != null
+	 * @post | result != null
+	 * @creates | result
 	 */
-	protected abstract Ball returnNewBall(Circle loc, Vector nspeed);
+	public abstract Ball returnNewBall(Circle loc, Vector nspeed);
 
-	
+
 	/**
 	 * Check whether this ball collides with a given `paddle` and if so, replicate numbers of balls 
 	 * according to the ReplicateTimes of the ReplicatorPaddle and return the 
@@ -120,18 +129,31 @@ public abstract class Ball implements Colors,changePaddle{
 	 * 
 	 * @pre | paddle != null
 	 * @post | 0 <= paddle.getReplicateTimes() &&  paddle.getReplicateTimes()<=3
-//	 * @post | paddle.getReplicateTimes() == 3 && result.equals(array.stream element|| element >=1 <=3) ||
-//	 *       | paddle.getReplicateTimes() == 2 && result.equals(getBalls().length==2) || 
-//	 *       | paddle.getReplicateTimes() == 1 && result.equals(getBalls().length==1)
-//	 * @post | Arrays.stream(newBalls).anyMatch(e -> e.getVelocity().equals(this.getVelocity().plus(new Vector(2,-2))))
-//   * @post | if (result.length ==2)  Arrays.stream(e->e.getvelocity == this.getvelocity.plus(new Vector(2, -2) 
-//	 * 			|| this.getvelocity.plus(new Vector(-2, 2)))  
+	 * @post | paddle.getReplicateTimes() == 3 && result.length==3 && //error
+	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,2)))) 
+	 *       | ||
+	 *       | paddle.getReplicateTimes() == 2 && result.length==2 &&
+	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2)))) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(-2,2)))) 
+	 *       | || 
+	 *       | paddle.getReplicateTimes() == 1 && result.length==1 &&
+	 *       | Arrays.stream(result).allMatch(e -> e.getLocation().equals(old(this).getLocation()))  &&
+	 *       | Arrays.stream(result).allMatch(e -> e.getDiameter()==old(this).getDiameter()) &&
+	 *       | Arrays.stream(result).anyMatch(e -> e.getVelocity().equals(old(this).getVelocity().plus(new Vector(2,-2))))
+     *       | ||
+     *       | result.equals(this)   
+     *@creates | result
+     *@mutates | this //?     
 	 */
-	
-	protected Ball[] collideBallPaddle(PaddleState paddle) { // how to check collide?
+	public Ball[] collideBallPaddle(PaddleState paddle) {
 		Ball[] newBalls = new Ball[paddle.getReplicateTimes()];
-		
-		
+	
 		if (paddle.getReplicateTimes() == 3) {
 			
 			newBalls[0]=this.returnNewBall(location, velocity.plus(new Vector(2, -2)));
@@ -153,12 +175,15 @@ public abstract class Ball implements Colors,changePaddle{
 	 * Return whether this ball is replicated.
 	 */
 	public boolean isReplicate() {
-		return replicate; 
+		return replicate;
 	}
+	
 
 	/**
 	 * set this ball is replicated.
-	 * @mutate | replicate
+	 * @pre | replicate == true || replicate == false
+	 * @post | isReplicate()==replicate // p42
+	 * @mutates | this //?replicate
 	 */
 	public void setReplicate(boolean replicate) {
 		this.replicate = replicate;
@@ -166,13 +191,19 @@ public abstract class Ball implements Colors,changePaddle{
 	
 	/**
 	 * check whether this ball is collide with the block or paddle.
-	 * @pre | block!= null
-	 * @pre | paddle!= null
+	 * @pre | block != null
+	 * @pre | paddle != null
+	 * @creates | result
+	 * @mutate | this//?
 	 */
 	public abstract Ball collideBallBlocks(BlockState block,PaddleState paddle) ;
 
+
+	
 	
 
+	
+	
 
 	
 	

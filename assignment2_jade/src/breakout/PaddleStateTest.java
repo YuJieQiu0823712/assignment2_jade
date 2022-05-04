@@ -38,8 +38,9 @@ class PaddleStateTest {
 	@Test
 	void testChangePaddle() {
 		Circle c1 = new Circle(new Point(2000, 2000), 700);
-		Ball ball1 = new NormalBall(c1, new Vector(4, 5));
-		assertEquals(p1.changePaddle(p1,ball1),p1);
+		Ball normalBall = new NormalBall(c1, new Vector(4, 5));
+		assertEquals(p1.changePaddle(p1,normalBall),p1);
+		
 
 	}
 

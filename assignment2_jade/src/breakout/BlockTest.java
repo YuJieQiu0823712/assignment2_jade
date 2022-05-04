@@ -34,10 +34,10 @@ class BlockTest {
 	void testBlock() {
 		assertEquals(r1138,b1.getLocation());
 	}
-
 	
 	@Test
 	void test() {
 		assertEquals(false,b1.replicateBall());
 	}
+
 }

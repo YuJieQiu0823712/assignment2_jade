@@ -19,7 +19,7 @@ import breakout.basics.Vector;
  * @invar | Point.ORIGIN.isUpAndLeftFrom(getBottomRight())
 // * @invar | Arrays.stream(getBalls()).allMatch(b -> getField().contains(b.getLocation()))
  * @invar | Arrays.stream(getBlocks()).allMatch(b -> getField().contains(b.getLocation()))
- * @invar | getField().contains(getPaddle().getLocation())
+ * @invar | getField().contains(getPaddle().getLocation()) 
  */
 public class BreakoutState{
 
@@ -227,13 +227,20 @@ public class BreakoutState{
 	 * @mutates this
 	 */
 	public void tick(int paddleDir, int elapsedTime) {
-		stepBalls(); 
+		int currentTime = (int)(System.currentTimeMillis()%1000000);
+		
+		
+		stepBalls(elapsedTime); 
 		bounceBallsOnWalls();
 		removeDeadBalls();
 		bounceBallsOnBlocks();
 		bounceBallsOnPaddle(paddleDir);
 		clampBalls();
 		balls = Arrays.stream(balls).filter(x -> x != null).toArray(Ball[]::new);
+		
+		while ((int)(System.currentTimeMillis()%1000000)<currentTime+elapsedTime) {
+			
+		}
 	}
 
 	private void clampBalls() {
@@ -273,9 +280,9 @@ public class BreakoutState{
 		}
 	}
 
-	private void stepBalls() {
+	private void stepBalls(int elapsedTime) {
 		for(int i = 0; i < balls.length; ++i) {
-			Point newcenter = balls[i].getLocation().getCenter().plus(balls[i].getVelocity());
+			Point newcenter = balls[i].getLocation().getCenter().plus(balls[i].getVelocity().scaled(elapsedTime));
 			balls[i] = balls[i].returnNewBall(balls[i].getLocation().withCenter(newcenter),balls[i].getVelocity());
 		}
 	}
@@ -287,11 +294,11 @@ public class BreakoutState{
 	 * @mutates this
 	 */
 	public void movePaddleRight(int elapsedTime) {
-		Point ncenter = paddle.getCenter().plus(PADDLE_VEL);
+		Point ncenter = paddle.getCenter().plus(PADDLE_VEL.scaled(elapsedTime));
 		paddle = paddle.returnNewPaddle(getField().minusMargin(PaddleState.WIDTH/2,0).constrain(ncenter));
-		//paddle = new NormalPaddle(getField().minusMargin(PaddleState.WIDTH/2,0).constrain(ncenter));
-	}
 
+	}
+ 
 	/**
 	 * Move the paddle left.
 	 * @param elapsedTime 
@@ -299,7 +306,7 @@ public class BreakoutState{
 	 * @mutates this
 	 */
 	public void movePaddleLeft(int elapsedTime) {
-		Point ncenter = paddle.getCenter().plus(PADDLE_VEL.scaled(-1));
+		Point ncenter = paddle.getCenter().plus(PADDLE_VEL.scaled(-1).scaled(elapsedTime));
 		paddle = paddle.returnNewPaddle(getField().minusMargin(PaddleState.WIDTH/2,0).constrain(ncenter));
 	}
 

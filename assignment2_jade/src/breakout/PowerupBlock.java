@@ -3,11 +3,13 @@ package breakout;
 import java.awt.Color;
 
 import breakout.basics.Rect;
-import breakout.basics.Vector;
 
+/**
+ * Represents the state of a block in the breakout game.
+ * @immutable
+ */
 public class PowerupBlock extends BlockState{
 
-	
 	/**
 	 * Construct a PowerupBlock with the given location.
 	 * @pre | location != null
@@ -21,7 +23,7 @@ public class PowerupBlock extends BlockState{
 	/**
 	 * Return the color of this block.
 	 * @post | result.equals(new Color(255,255,0))
-	 * @creates result //?
+	 * @creates | result 
 	 */
 	@Override
 	public Color pointBlock() {
@@ -33,17 +35,19 @@ public class PowerupBlock extends BlockState{
 	 * @post | result == null
 	 */
 	@Override
-	protected BlockState returnNewBlock(Rect location) {
+	public BlockState returnNewBlock(Rect location) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	/**
 	 * Return whether this PowerupBlock is reflect.
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean reflect() {
+	public boolean reflect() {
+		
 		return false;
 	}
 
@@ -52,14 +56,17 @@ public class PowerupBlock extends BlockState{
 	 * @post | result == true
 	 */
 	@Override
-	protected boolean charged() {
+	public boolean charged() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	
 	/**
 	 * Return whether this PowerupBlock represents a same content with the obj.
 	 * @pre | obj!=null
+	 * @post | obj instanceof PowerupBlock pblock &&
+	 *       | pblock.getLocation().equals(this.getLocation())
+	 *   
 	 */
 	@Override
 	public boolean equals(Object obj) {

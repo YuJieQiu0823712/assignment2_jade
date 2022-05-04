@@ -1,18 +1,17 @@
 package breakout;
 
 import java.awt.Color;
-import java.util.Arrays;
 
-import breakout.basics.Point;
 import breakout.basics.Rect;
-import breakout.basics.Vector;
 
+/**
+ * Represents the state of a normalBlock in the breakout game.
+ * @immutable
+ */
 public class SturdyBlock extends BlockState{
-
-	
 	/**
-	 * 
 	 * @invar | hitTimes>=0 && hitTimes<=3
+	 * @representationObject
 	 */
 	private int hitTimes;
 
@@ -20,7 +19,7 @@ public class SturdyBlock extends BlockState{
 	 * Return the HitTimes of this SturdyBlock. 
 	 */
 	public int getHitTimes() {
-		return hitTimes; 
+		return hitTimes;
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class SturdyBlock extends BlockState{
 	 * @post | result.equals(new Color(102,102,102)) ||
 	 *       | result.equals(new Color(51,51,51)) ||
 	 *       | result.equals(new Color(153,153,153))
-	 * @creates result //?
+	 * @creates | result
 	 */
 	@Override
 	public Color pointBlock() {
@@ -58,23 +57,26 @@ public class SturdyBlock extends BlockState{
 	 * Return NewBlock.
 	 * @post | result == null ||
 	 *       | result.equals(new SturdyBlock(location,getHitTimes()-1))
+	 * @creates | result
+	 * @mutates| this//? textbook p81
+	 * @inspect | this //?
 	 */
 	@Override
-	protected BlockState returnNewBlock(Rect location) {
+	public BlockState returnNewBlock(Rect location) {
 		if(hitTimes > 1) {
 			return new SturdyBlock(location,hitTimes-1);
 		} else {
 			return null;
 		}
 
-
 	}
 
 	/**
 	 * Return whether this SturdyBlock is reflect.
+	 * @inspect | this //?
 	 */
 	@Override
-	protected boolean reflect() {
+	public boolean reflect() {
 		if (hitTimes>1) {
 		return true;
 		} else {
@@ -88,14 +90,17 @@ public class SturdyBlock extends BlockState{
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean charged() {
+	public boolean charged() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 	/**
 	 * Return whether this SturdyBlock represents a same content with the obj.
 	 * @pre | obj!=null
+	 * @post | obj instanceof SturdyBlock sblock &&
+	 *       | sblock.getLocation().equals(this.getLocation())
+	 *    
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -111,6 +116,7 @@ public class SturdyBlock extends BlockState{
 	public String toString() {
 		return this.getLocation().toString();
 	}
+
 
 
 

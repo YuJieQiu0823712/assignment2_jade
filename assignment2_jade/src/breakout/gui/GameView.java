@@ -104,7 +104,7 @@ public class GameView extends JPanel {
 				breakoutState.movePaddleRight(elapsedTime);
 				curPaddleDir = 1;
 			}
-			breakoutState.tick(curPaddleDir, elapsedTime);
+			breakoutState.tick(curPaddleDir, elapsedTime); 
 			if (breakoutState.isDead()) {
 				JOptionPane.showMessageDialog(this, "Game over :-(");
 				System.exit(0);

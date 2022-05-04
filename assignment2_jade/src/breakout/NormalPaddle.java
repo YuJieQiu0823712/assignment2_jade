@@ -1,24 +1,42 @@
 package breakout;
 
 import breakout.basics.Point;
-
+/**
+ * 
+ * @immutable
+ * 
+ */
 public class NormalPaddle extends PaddleState{
 	
+	/**
+	 * @pre | center != null
+	 * @post | getCenter().equals(center)
+	 */
 
 	public NormalPaddle(Point center) {
 		super(center);
 	}
-
+	
+	/**
+	 * @pre | newCenter != null
+	 * @creates | result
+	 */
 	@Override
-	protected PaddleState returnNewPaddle(Point newCenter) {
+	public PaddleState returnNewPaddle(Point newCenter) {
 		return new NormalPaddle (newCenter);
 	}
-
+	
+	/**
+	 * @post | result == 0
+	 */
 	@Override
-	protected int getReplicateTimes() {
+	public int getReplicateTimes() {
 		return 0;
 	}
 
+	/**
+	 * @pre | ball != null
+	 */
 	@Override
 	public boolean replicatorPaddle(Ball ball) {
 		return ball.isReplicate();

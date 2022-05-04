@@ -2,7 +2,6 @@ package breakout;
 
 import java.awt.Color;
 
-import breakout.basics.Point;
 import breakout.basics.Rect;
 
 /**
@@ -37,24 +36,27 @@ public abstract class BlockState implements Colors{
 
 	/**
 	 * Return NewBlock.
+	 * @creates | result
+	 * @post | result == null ||
+	 *       | result!=null 
+	 * @inspect | this //?
 	 */
-	
-	protected abstract BlockState returnNewBlock(Rect location);
+	public abstract BlockState returnNewBlock(Rect location);
 	
 	/**
 	 * Return whether this Block is reflect.
 	 */
-	protected abstract boolean reflect();
+	public abstract boolean reflect();
 	
 	/**
 	 * Return whether this Block is charged.
 	 */
-	protected abstract boolean charged();
+	public abstract boolean charged();
 	
 	/**
 	 * Return whether this ball is replicated by this block.
 	 */
-	protected boolean replicateBall() {
+	public boolean replicateBall() {
 		return false;
 	}
 	

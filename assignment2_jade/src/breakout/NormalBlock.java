@@ -3,7 +3,11 @@ package breakout;
 import java.awt.Color;
 
 import breakout.basics.Rect;
-import breakout.basics.Vector;
+
+/**
+ * Represents the state of a normalBlock in the breakout game.
+ * @immutable
+ */
 
 public class NormalBlock extends BlockState{
 
@@ -21,7 +25,7 @@ public class NormalBlock extends BlockState{
 	 * @post | result == null
 	 */
 	@Override
-	protected BlockState returnNewBlock(Rect location) {
+	public BlockState returnNewBlock(Rect location) {
 		return null;
 	}
 
@@ -30,7 +34,7 @@ public class NormalBlock extends BlockState{
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean reflect() {
+	public boolean reflect() {
 		return false;
 	}
 
@@ -39,7 +43,7 @@ public class NormalBlock extends BlockState{
 	 * @post | result == false
 	 */
 	@Override
-	protected boolean charged() {
+	public boolean charged() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -47,14 +51,15 @@ public class NormalBlock extends BlockState{
 	/**
 	 * Return whether this NormalBlock represents a same content with the obj.
 	 * @pre | obj!=null
+	 * @post | obj instanceof NormalBlock nblock &&
+	 *       | nblock.getLocation().equals(this.getLocation())
+	 *       
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NormalBlock nblock &&
 				nblock.getLocation().equals(this.getLocation());
 	}
-
-
 
 
 
