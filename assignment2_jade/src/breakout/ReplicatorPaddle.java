@@ -14,7 +14,7 @@ public class ReplicatorPaddle extends PaddleState {
 	
 	/**
 	 * @invar | 0<replicateTimes && replicateTimes<=3
-	 * @representaionObject//
+	 * @representaionObject
 	 */
 	private int replicateTimes;
 
@@ -58,7 +58,7 @@ public class ReplicatorPaddle extends PaddleState {
 	 * @pre | newCenter != null
 	 * @creates | result
 	 * @post | result.getReplicateTimes() == getReplicateTimes()
-	 * @inspect | this//
+	 * @inspect | this
 	 */
 	@Override
 	public PaddleState returnNewPaddle(Point newCenter) {
